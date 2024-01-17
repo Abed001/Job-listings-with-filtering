@@ -36,7 +36,6 @@ function App() {
 
   const clear = () => {
     setFilters([]);
-    setFilteredJobs(jobs);
     setAppliedFilters([]);
   }
   const handleRemoveFilter = (filterToRemove) => {
@@ -46,7 +45,7 @@ function App() {
     setFilters((prevFilters) =>
       prevFilters.filter((filter) => filter !== filterToRemove)
     );
-    setFilteredJobs((prevFilteredJobs) => doFilter(prevFilteredJobs)); // Re-filter once
+    doFilter();
   };
 
 
@@ -69,9 +68,7 @@ function App() {
         return prevAppliedFilters; // Keep previous appliedFilters
       }
     });
-    setFilteredJobs((prevFilteredJobs) => doFilter(prevFilteredJobs));
-
-    //doFilter(); // Trigger filtering
+    doFilter(); // Trigger filtering
   };
 
   return (
@@ -88,11 +85,11 @@ function App() {
                 <span onClick={() => handleRemoveFilter(filter)} className='rounded-tr-md rounded-br-md text-white w-[50%] bg-cyanbluecolor hover:bg-black transition-all duration-300 px-4 py-1 text-center text-lg'>X</span>
               </div>
             ))}
-           
+
           </div>
           <div className=' p-0 m-0'>
-              <button onClick={clear} className='text-gray-500 text-right min-w-0 mr-10 hover:text-cyanbluecolor hover:border-b-[1px] hover:border-cyanbluecolor transition-all duration-300 '>Clear</button>
-            </div>
+            <button onClick={clear} className='text-gray-500 text-right min-w-0 mr-10 hover:text-cyanbluecolor hover:border-b-[1px] hover:border-cyanbluecolor transition-all duration-300 '>Clear</button>
+          </div>
 
 
         </div>
